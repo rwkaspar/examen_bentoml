@@ -1,4 +1,6 @@
 .DS_Store
 .DS_Store?
 /.venv
+/bentoml_venv
 /clean_data.csv
+*.pyc
