@@ -4,3 +4,4 @@
 /bentoml_venv
 /clean_data.csv
 *.pyc
+*.tar
