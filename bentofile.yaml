@@ -1,0 +1,14 @@
+service: "src.service:AdmissionService"
+
+include:
+  - "src/"
+  - "requirements.txt"
+
+python:
+  packages:
+    - bentoml
+    - scikit-learn
+    - pandas
+    - fastapi
+    - uvicorn
+    - python-jose
