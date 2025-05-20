@@ -25,16 +25,16 @@ async def test_predict_success():
 @pytest.mark.asyncio
 async def test_predict_missing_field():
     payload = valid_payload.copy()
-    del payload["input_data"]["GRE_Score"]  # so löschen, da jetzt verschachtelt
+    del payload["input_data"]["GRE_Score"]
     async with httpx.AsyncClient() as client:
         response = await client.post(f"{BASE_URL}/predict", json=payload)
-    assert response.status_code == 400  # oder was dein Service bei Validierungsfehlern zurückgibt
+    assert response.status_code == 400
 
 @pytest.mark.asyncio
 async def test_predict_invalid_type():
     payload = valid_payload.copy()
-    payload["input_data"]["GRE_Score"] = "not_a_number"  # verschachtelt anpassen
+    payload["input_data"]["GRE_Score"] = "not_a_number"
     async with httpx.AsyncClient() as client:
         response = await client.post(f"{BASE_URL}/predict", json=payload)
-    assert response.status_code == 400  # wenn Pydantic validiert, dann 422 ist üblich
+    assert response.status_code == 400
 
