@@ -3,5 +3,9 @@
 /.venv
 /bentoml_venv
 /clean_data.csv
-*.pyc
 *.tar
+
+# pytest
+*.pyc
+/src/__pycache__
+/src/__pycache__/*
