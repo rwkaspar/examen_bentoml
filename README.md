@@ -33,10 +33,10 @@ pip install -r requirements.txt
 python run_pipeline.py
 ```
 
-This executes the following steps sequentially:
-* src/import_data.py: Imports the raw data.
-* src/prepare_data.py: Prepares and processes the data for training.
-* src/train_model.py: Trains the machine learning model and saves it.
+>This executes the following steps sequentially:
+>* src/import_data.py: Imports the raw data.
+>* src/prepare_data.py: Prepares and processes the data for training.
+>* src/train_model.py: Trains the machine learning model and saves it.
 
 4. **Build the BentoML service:**
 
@@ -50,7 +50,9 @@ bentoml build
 bentoml serve admission_api:latest
 ```
 
-The service listens on http://localhost:3000.
+>The service listens on http://localhost:3000.
+
+---
 
 ## API Usage
 
