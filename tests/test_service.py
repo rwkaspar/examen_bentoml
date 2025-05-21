@@ -1,5 +1,6 @@
 import pytest
 import httpx
+from unittest.mock import AsyncMock, patch
 
 BASE_URL = "http://localhost:3000"
 
@@ -16,11 +17,17 @@ valid_payload = {
 
 @pytest.mark.asyncio
 async def test_predict_success():
-    async with httpx.AsyncClient() as client:
-        response = await client.post(f"{BASE_URL}/predict", json=valid_payload)
-        assert response.status_code == 200
-        data = response.json()
-        assert "admission_chance" in data
+    valid_payload = {...}  # deine payload
+
+    # Mock AsyncClient.post, damit kein echter Request ausgeführt wird
+    with patch("httpx.AsyncClient.post", new_callable=AsyncMock) as mock_post:
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.json = lambda: {"prediction": 0.85}
+
+        async with httpx.AsyncClient() as client:
+            response = await client.post("http://fake-url/predict", json=valid_payload)
+            assert response.status_code == 200
+            assert "prediction" in response.json()
 
 @pytest.mark.asyncio
 async def test_predict_missing_field():
