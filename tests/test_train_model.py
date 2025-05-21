@@ -8,12 +8,22 @@ from src import train_model
 def test_main_trains_and_saves_model():
     X_train = pd.DataFrame({
         "GRE Score": [320, 310, 300],
-        "TOEFL Score": [110, 105, 100]
+        "TOEFL Score": [110, 105, 100],
+        "University Rating": [4, 3, 3],
+        "SOP": [4.0, 3.0, 3.5],
+        "LOR": [4.5, 3.5, 3.0],
+        "CGPA": [9.0, 8.5, 8.0],
+        "Research": [1, 0, 1]
     })
     y_train = pd.DataFrame({"Chance of Admit ": [0.9, 0.8, 0.7]})
     X_test = pd.DataFrame({
         "GRE Score": [300, 305],
-        "TOEFL Score": [100, 102]
+        "TOEFL Score": [100, 102],
+        "University Rating": [3, 4],
+        "SOP": [3.0, 4.0],
+        "LOR": [3.5, 4.5],
+        "CGPA": [8.0, 8.5],
+        "Research": [0, 1]
     })
     y_test = pd.DataFrame({"Chance of Admit ": [0.7, 0.75]})
 
