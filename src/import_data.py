@@ -2,6 +2,10 @@ import os
 import requests
 import logging
 
+log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(level=logging.INFO, format=log_fmt)
+
+logger = logging.getLogger(__name__)
 
 def main(raw_data_relative_path="./data/raw",
          filename="admission.csv",
@@ -25,12 +29,9 @@ def main(raw_data_relative_path="./data/raw",
             text_file.close()
         else:
             print(f'Error accessing the object {input_file}:', response.status_code)
-    logger = logging.getLogger(__name__)
     logger.info('making raw data set')
 
 
 if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
 
     main()
