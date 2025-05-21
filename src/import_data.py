@@ -22,7 +22,6 @@ def main(raw_data_relative_path="./data/raw",
         print(f'downloading {input_file} as {os.path.basename(output_file)}')
         response = requests.get(object_url)
         if response.status_code == 200:
-            # Process the response content as needed
             content = response.text
             text_file = open(output_file, "wb")
             text_file.write(content.encode('utf-8'))

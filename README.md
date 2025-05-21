@@ -95,3 +95,26 @@ pytest tests/ -v
 ```bash
 bentoml containerize admission_api:latest --docker-image-tag admission_api:latest
 ```
+
+---
+
+## Running the Project with Docker
+
+When running the Docker container, you need to make sure that the BentoML model store is accessible inside the container. By default, BentoML looks for saved models in `/home/bentoml/models` inside the container.
+
+If you have already trained a model on your host machine and it is stored in `~/bentoml/models`, you must mount this directory into the container so BentoML can find it.
+
+### Starting the container with model volume mounted
+
+```bash
+docker run --rm -p 3000:3000 \
+  -v ~/bentoml/models:/home/bentoml/models \
+  kaspar_bentoml_exam_image:latest
+```
+
+This command maps your local model directory (~/bentoml/models) to the expected directory inside the container (/home/bentoml/models).
+
+### Notes
+* Without mounting the model directory, the container will not find any saved models and will fail to start the BentoML service.
+* Alternatively, you can train and save the model inside the container to ensure the model exists in the container’s BentoML store.
+* Make sure your model is saved under the name expected by the BentoML service (admission_model in this project).

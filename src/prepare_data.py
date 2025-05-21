@@ -8,7 +8,6 @@ SAVE_PATH = "data/processed"
 def main():
     df = pd.read_csv(DATA_PATH)
 
-    # Optionale Spaltenbereinigung
     df = df.dropna()
 
     X = df.drop(columns=["Chance of Admit ", "Serial No."])

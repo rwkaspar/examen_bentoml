@@ -1,10 +1,8 @@
-import os
 import pandas as pd
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 from src import prepare_data
 
 def test_main_creates_output_dir_and_saves_files(tmp_path):
-    # Mock dataframe returned by pd.read_csv
     data = {
         "Serial No.": [1, 2, 3, 4, 5],
         "GRE Score": [320, 310, 300, 330, 340],
