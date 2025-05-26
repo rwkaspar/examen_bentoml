@@ -24,6 +24,7 @@ def main():
         model,
         metadata={"rmse": rmse, "r2": r2},
     )
+    print("Model trained and saved successfully.")
 
 if __name__ == "__main__":
     main()

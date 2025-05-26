@@ -1,7 +1,6 @@
 import bentoml
 from pydantic import BaseModel
 import numpy as np
-from typing import Annotated
 
 class AdmissionInput(BaseModel):
     GRE_Score: int
@@ -14,7 +13,7 @@ class AdmissionInput(BaseModel):
 
 model = bentoml.sklearn.load_model("admission_model:latest")
 
-@bentoml.service(name="admission_api")
+@bentoml.service(name="admission_prediction")
 class AdmissionService:
 
     @bentoml.api
