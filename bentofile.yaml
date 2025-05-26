@@ -1,8 +1,14 @@
 service: "src.service:AdmissionService"
 
+labels:
+  owner: "Robert Kaspar"
+  project: "Admissions Prediction"
+  description: "Predict the chance of admission of a student in a university"
+
 include:
   - "src/"
   - "requirements.txt"
+  - "models/"
 
 python:
   packages:

@@ -22,7 +22,7 @@ def main():
     bentoml.sklearn.save_model(
         "admission_model",
         model,
-        metadata={"rmse": rmse, "r2": r2}
+        metadata={"rmse": rmse, "r2": r2},
     )
 
 if __name__ == "__main__":

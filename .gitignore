@@ -4,6 +4,7 @@
 /bentoml_venv
 /clean_data.csv
 *.tar
+models/*
 
 # pytest
 *.pyc
