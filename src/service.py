@@ -11,10 +11,11 @@ class AdmissionInput(BaseModel):
     CGPA: float
     Research: int
 
-model = bentoml.sklearn.load_model("admission_model:latest")
-
 @bentoml.service(name="admission_prediction")
 class AdmissionService:
+    def __init__(self):
+        # Modell innerhalb der Serviceklasse laden
+        self.model = bentoml.sklearn.get("admission_model:latest")
 
     @bentoml.api
     async def predict(self, input_data: AdmissionInput) -> dict:
@@ -27,5 +28,5 @@ class AdmissionService:
             input_data.CGPA,
             input_data.Research,
         ]])
-        prediction = model.predict(features)
+        prediction = self.model.predict(features) # self.model verwenden
         return {"admission_chance": float(prediction[0])}

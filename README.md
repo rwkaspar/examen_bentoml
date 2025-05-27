@@ -93,10 +93,15 @@ pytest tests/ -v
 * The service uses BentoML’s latest API style.
 * If you want to containerize the service, use:
 ```bash
-bentoml containerize admission_api:latest --docker-image-tag admission_api:latest
+bentoml containerize admission_prediction:<tag> --docker-image-tag kaspar_admission_prediction
 ```
 
 ---
+
+## Save the docker image
+```bash
+docker save -o bento_image.tar <your_name>_<your_image_name>
+```
 
 ## Running the Project with Docker
 

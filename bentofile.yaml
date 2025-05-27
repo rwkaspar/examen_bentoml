@@ -8,7 +8,6 @@ labels:
 include:
   - "src/"
   - "requirements.txt"
-  - "models/"
 
 python:
   packages:
@@ -18,3 +17,6 @@ python:
     - fastapi
     - uvicorn
     - python-jose
+
+# models:
+#   - admission_model:latest # Oder der spezifische Tag, z.B. admission_model:20250527103000
