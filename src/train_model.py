@@ -19,12 +19,11 @@ def main():
     print(f"RMSE: {rmse:.4f}")
     print(f"R²: {r2:.4f}")
 
-    bentoml.sklearn.save_model(
+    saved_model = bentoml.sklearn.save_model(
         "admission_model",
         model,
-        metadata={"rmse": rmse, "r2": r2},
     )
-    print("Model trained and saved successfully.")
+    print(f"Model saved: {saved_model}")
 
 if __name__ == "__main__":
     main()
