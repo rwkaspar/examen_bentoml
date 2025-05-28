@@ -17,6 +17,8 @@ python:
     - fastapi
     - uvicorn
     - python-jose
+    - jwt
+    - pydantic
 
 # models:
 #   - admission_model:latest # Oder der spezifische Tag, z.B. admission_model:20250527103000
