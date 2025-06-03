@@ -36,10 +36,10 @@ async def test_predict_requires_auth():
         "Research": 1,
     }
     async with httpx.AsyncClient() as client:
-        # Ohne Token
-        response = await client.post(f"{BASE_URL}/v1/models/rf_classifier/predict", json=payload)
+        response = await client.post(f"{BASE_URL}/predict", json=payload)
     assert response.status_code == 401
-    assert "Missing authentication token" in response.text or "detail" in response.json()
+    data = response.json()
+    assert data.get("detail") == "Missing authentication token"
 
 @pytest.mark.asyncio
 async def test_predict_success():
@@ -53,13 +53,12 @@ async def test_predict_success():
         "Research": 1,
     }
     async with httpx.AsyncClient() as client:
-        # Login zuerst
         login_resp = await client.post(f"{BASE_URL}/login", json=valid_credentials)
+        assert login_resp.status_code == 200
         token = login_resp.json().get("token")
         headers = {"Authorization": f"Bearer {token}"}
 
-        # Jetzt Predict mit Token
-        response = await client.post(f"{BASE_URL}/v1/models/rf_classifier/predict", json=payload, headers=headers)
+        response = await client.post(f"{BASE_URL}/predict", json=payload, headers=headers)
 
     assert response.status_code == 200
     data = response.json()
@@ -79,8 +78,7 @@ async def test_predict_invalid_token():
     }
     headers = {"Authorization": "Bearer invalid.token.value"}
     async with httpx.AsyncClient() as client:
-        response = await client.post(f"{BASE_URL}/v1/models/rf_classifier/predict", json=payload, headers=headers)
+        response = await client.post(f"{BASE_URL}/predict", json=payload, headers=headers)
     assert response.status_code == 401
     data = response.json()
-    assert data.get("detail") in ["Invalid token", "Token has expired"]
-
+    assert data.get("detail") == "Invalid token"

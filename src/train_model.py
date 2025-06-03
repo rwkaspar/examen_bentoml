@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import root_mean_squared_error, r2_score
 import bentoml
+from datetime import datetime # Import datetime for optional timestamp
 
 def main():
     X_train = pd.read_csv("data/processed/X_train.csv")
@@ -22,6 +23,11 @@ def main():
     saved_model = bentoml.sklearn.save_model(
         "admission_model",
         model,
+        metadata={
+            "rmse": float(rmse),
+            "r2": float(r2),
+            "training_date": datetime.now().isoformat()
+        }
     )
     print(f"Model saved: {saved_model}")
 

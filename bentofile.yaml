@@ -10,15 +10,16 @@ include:
   - "requirements.txt"
 
 python:
-  packages:
-    - bentoml
-    - scikit-learn
-    - pandas
-    - fastapi
-    - uvicorn
-    - python-jose
-    - jwt
-    - pydantic
+  requirements_txt: "./requirements.txt"
+  # packages:
+  #   - bentoml
+  #   - scikit-learn
+  #   - pandas
+  #   - fastapi
+  #   - uvicorn
+  #   - python-jose
+  #   - pyjwt
+  #   - pydantic
 
 # models:
 #   - admission_model:latest # Oder der spezifische Tag, z.B. admission_model:20250527103000

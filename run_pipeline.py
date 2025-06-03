@@ -5,7 +5,8 @@ os.environ["PYTHONPATH"] = "src"
 steps = [
     f"python src/import_data.py",
     f"python src/prepare_data.py",
-    f"python src/train_model.py"
+    f"python src/train_model.py",
+    f"python src/service.py"
 ]
 
 for step in steps:
